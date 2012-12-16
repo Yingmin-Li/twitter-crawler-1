@@ -26,12 +26,6 @@ public class AnnotatedInfo {
     final String ACCESS_TOKEN_SECRET = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
     Status status;
     
-    String timestamp;
-    private int followers;
-    private int retweets;
-    private int links;
-    private int references;
-    
     private int exclamationMarks;
     private int questionMarks;
     private int quotationMarks;
