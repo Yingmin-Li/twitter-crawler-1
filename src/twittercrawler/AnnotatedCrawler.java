@@ -19,10 +19,10 @@ import twitter4j.auth.AccessToken;
 
 class AnnotatedCrawler {
     
-    final String CONSUMER_KEY = "5fPDqW5R9GXo9bWH3C5w";
-    final String CONSUMER_KEY_SECRET = "yXljitRmLP3L6TIhOOVw73x48CzGqXvxDuLWXiZEOs4";
-    final String ACCESS_TOKEN = "974982476-zxZ81ypNUxqo00m1tN26Py8phw153WlVrkm4wvcR";
-    final String ACCESS_TOKEN_SECRET = "WNXNzgPzuDjaqojPYnPBhf01BClNnxDB8nmn8l33U";
+    final String CONSUMER_KEY = "xxxxxxxxxxxxxxxxxxxxxxxxxx";
+    final String CONSUMER_KEY_SECRET = "xxxxxxxxxxxxxxxxxxxxxxxxxxxx";
+    final String ACCESS_TOKEN = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
+    final String ACCESS_TOKEN_SECRET = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
     Status status;
     
     void run() throws FileNotFoundException, IOException {
@@ -61,8 +61,7 @@ class AnnotatedCrawler {
             // due to rate limit of twitter, we stop at 180 messages and continue
             // after 15 minutes
             if (i == 180) {
-                break;
-            }
+                break; }
         }
         in.close();
         out.close();
