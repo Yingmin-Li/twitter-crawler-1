@@ -123,7 +123,7 @@ public class NotAnnotatedInfo {
         out.close();
     } 
 
-    private void getStatusInfo(String tweet) {
+   private void getStatusInfo(String tweet) {
         exclamationMarks = 0;
         questionMarks = 0;
         quotationMarks = 0;
@@ -152,7 +152,7 @@ public class NotAnnotatedInfo {
         
         for (int i = 0; i < tweet.length() - 1; i++) {
             if (tweetChars[i] == ':' && tweetChars[i+1] == ')') {
-                posEmoticons ++;}
+                posEmoticons ++; }
             if (tweetChars[i] == ':' && tweetChars[i+1] == 'D') {
                 veryPosEmoticons ++; }
             if (tweetChars[i] == ':' && (tweetChars[i+1] == 'P' || tweetChars[i+1] == 'p')) {
@@ -173,13 +173,13 @@ public class NotAnnotatedInfo {
                 veryNegEmoticons ++; }
             if ((tweetChars[i] == '/' || tweetChars[i] == '\\') && tweetChars[i+1] == ':') {
                 veryNegEmoticons ++; }
-            if(tweetChars[i] == '♥'){
+            if(tweetChars[i] == '♥') {
                 veryPosEmoticons ++; }
             if (tweetChars[i] == ':' && tweetChars[i+1] == '*') {
                 veryPosEmoticons ++; }
             
             if (tweetChars[i] == 't' && tweetChars[i+1] == 'p') {
-                i += 2; }
+                i += 4; }
         }
         
         for (int i = 0; i < tweet.length() - 2; i++) {
@@ -232,10 +232,12 @@ public class NotAnnotatedInfo {
 
     
     /* http://wiki.answers.com/Q/Java_program_to_find_frequency_of_occurence_of_each_word_in_text_file */
-    private void findWords(String tweet, Set posSet, Set vPosSet, Set negSet, Set vNegSet, Set negationsSet, Set posExpSet, Set negExpSet) {
+    private void findWords(String tweet, Set posSet, Set vPosSet, Set negSet,
+            Set vNegSet, Set negationsSet, Set posExpSet, Set negExpSet) {
         int words = 0;
-        int flag=0;
+        boolean flag = false;
         String lastWord = "";
+        
         linkNum = 0;
         posWords = 0;
         vPosWords = 0;
@@ -254,65 +256,65 @@ public class NotAnnotatedInfo {
         while (parser.hasMoreTokens()) {
             String currentWord = clearWord(parser.nextToken());
             //System.out.println(currentWord);
-            words++;
-            flag=0;
-            if(lastWord.compareTo("")!=0){
-                if(posExpSet.contains(lastWord+" "+currentWord)){
-                    posExp++;
-                    flag=1;}
-                else if(negExpSet.contains(lastWord+" "+currentWord)){
-                    negExp++;
-                    flag=1;}
+            words ++;
+            flag = false;
+            if (lastWord.compareTo("") != 0) {
+                if (posExpSet.contains(lastWord + " " + currentWord)) {
+                    posExp ++;
+                    flag = true;
+                }
+                else if (negExpSet.contains(lastWord + " " + currentWord)) {
+                    negExp ++;
+                    flag = true;
+                }
                 else if (posSet.contains(lastWord)) {
-                    posWords++; }
+                    posWords ++; }
                 else if (vPosSet.contains(lastWord)) {
-                    vPosWords++; }
-                else if(negSet.contains(lastWord)) {
-                    negWords++; }
-                else if(vNegSet.contains(lastWord)) {
-                    vNegWords++; }
-                else if(negationsSet.contains(lastWord)) {
-                    negations++; }
-                else if(lastWord.startsWith("http")) {
-                    linkNum++; }
+                    vPosWords ++; }
+                else if (negSet.contains(lastWord)) {
+                    negWords ++; }
+                else if (vNegSet.contains(lastWord)) {
+                    vNegWords ++; }
+                else if (negationsSet.contains(lastWord)) {
+                    negations ++; }
+                else if (lastWord.startsWith("http")) {
+                    linkNum ++; }
             }
-            if(flag==1){
-                lastWord="";
-            }
-            else{
-                lastWord=currentWord;
-            }
+            if (flag) {
+                lastWord = ""; }
+            else {
+                lastWord = currentWord; }
         }
-        if(flag==0){
+        if (!flag) {
             if (posSet.contains(lastWord)) {
-                posWords++; }
+                posWords ++; }
             if (vPosSet.contains(lastWord)) {
-                vPosWords++; }
-            if(negSet.contains(lastWord)) {
-                negWords++; }
-            else if(vNegSet.contains(lastWord)) {
-                vNegWords++; }
-            if(negationsSet.contains(lastWord)) {
-                negations++; }
-            if(lastWord.startsWith("http")) {
-                linkNum++; }
+                vPosWords ++; }
+            if (negSet.contains(lastWord)) {
+                negWords ++; }
+            if (vNegSet.contains(lastWord)) {
+                vNegWords ++; }
+            if (negationsSet.contains(lastWord)) {
+                negations ++; }
+            if (lastWord.startsWith("http")) {
+                linkNum ++; }
         }
-        posRatio = (double)posWords/words;
-        negRatio = (double)negWords/words;
-        vPosRatio = (double)vPosWords/words;
-        vNegRatio = (double)vNegWords/words;
+        posRatio = (double) posWords/words;
+        negRatio = (double) negWords/words;
+        vPosRatio = (double) vPosWords/words;
+        vNegRatio = (double) vNegWords/words;
     }
     
     private String clearWord(String word){
         String clearWord;
-        if(word.charAt(0)=='\''){
-            clearWord=word.substring(1);
+        if (word.charAt(0) == '\'') {
+            clearWord = word.substring(1);
         }
-        else if(word.charAt(word.length()-1)=='\''){
-            clearWord=word.substring(0,word.length()-1);
+        else if (word.charAt(word.length() - 1) == '\'') {
+            clearWord = word.substring(0, word.length() - 1);
         }
-        else{
-            clearWord=word;
+        else {
+            clearWord = word;
         }
         return clearWord;
     }
