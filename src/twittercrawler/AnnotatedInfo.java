@@ -20,17 +20,17 @@ import twitter4j.auth.AccessToken;
 
 public class AnnotatedInfo {
     
-    final String CONSUMER_KEY = "5fPDqW5R9GXo9bWH3C5w";
-    final String CONSUMER_KEY_SECRET = "yXljitRmLP3L6TIhOOVw73x48CzGqXvxDuLWXiZEOs4";
-    final String ACCESS_TOKEN = "974982476-zxZ81ypNUxqo00m1tN26Py8phw153WlVrkm4wvcR";
-    final String ACCESS_TOKEN_SECRET = "WNXNzgPzuDjaqojPYnPBhf01BClNnxDB8nmn8l33U";
+    final String CONSUMER_KEY = "xxxxxxxxxxxxxxxxxxxxxxxxxxx";
+    final String CONSUMER_KEY_SECRET = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
+    final String ACCESS_TOKEN = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
+    final String ACCESS_TOKEN_SECRET = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
     Status status;
     
     String timestamp;
-    int followers;
-    int retweets;
-    int links;
-    int references;
+    private int followers;
+    private int retweets;
+    private int links;
+    private int references;
     
     private int exclamationMarks;
     private int questionMarks;
@@ -161,7 +161,7 @@ public class AnnotatedInfo {
         
         for (int i = 0; i < tweet.length() - 1; i++) {
             if (tweetChars[i] == ':' && tweetChars[i+1] == ')') {
-                posEmoticons ++;}
+                posEmoticons ++; }
             if (tweetChars[i] == ':' && tweetChars[i+1] == 'D') {
                 veryPosEmoticons ++; }
             if (tweetChars[i] == ':' && (tweetChars[i+1] == 'P' || tweetChars[i+1] == 'p')) {
@@ -188,7 +188,7 @@ public class AnnotatedInfo {
                 veryPosEmoticons ++; }
             
             if (tweetChars[i] == 't' && tweetChars[i+1] == 'p') {
-                i += 2; }
+                i += 4; }
         }
         
         for (int i = 0; i < tweet.length() - 2; i++) {
@@ -244,8 +244,9 @@ public class AnnotatedInfo {
     private void findWords(String tweet, Set posSet, Set vPosSet, Set negSet,
             Set vNegSet, Set negationsSet, Set posExpSet, Set negExpSet) {
         int words = 0;
-        int flag=0;
+        boolean flag = false;
         String lastWord = "";
+        
         linkNum = 0;
         posWords = 0;
         vPosWords = 0;
@@ -264,65 +265,65 @@ public class AnnotatedInfo {
         while (parser.hasMoreTokens()) {
             String currentWord = clearWord(parser.nextToken());
             //System.out.println(currentWord);
-            words++;
-            flag=0;
-            if(lastWord.compareTo("")!=0){
-                if(posExpSet.contains(lastWord+" "+currentWord)){
-                    posExp++;
-                    flag=1;}
-                else if(negExpSet.contains(lastWord+" "+currentWord)){
-                    negExp++;
-                    flag=1;}
+            words ++;
+            flag = false;
+            if (lastWord.compareTo("") != 0) {
+                if (posExpSet.contains(lastWord + " " + currentWord)) {
+                    posExp ++;
+                    flag = true;
+                }
+                else if (negExpSet.contains(lastWord + " " + currentWord)) {
+                    negExp ++;
+                    flag = true;
+                }
                 else if (posSet.contains(lastWord)) {
-                    posWords++; }
+                    posWords ++; }
                 else if (vPosSet.contains(lastWord)) {
-                    vPosWords++; }
-                else if(negSet.contains(lastWord)) {
-                    negWords++; }
-                else if(vNegSet.contains(lastWord)) {
-                    vNegWords++; }
-                else if(negationsSet.contains(lastWord)) {
-                    negations++; }
-                else if(lastWord.startsWith("http")) {
-                    linkNum++; }
+                    vPosWords ++; }
+                else if (negSet.contains(lastWord)) {
+                    negWords ++; }
+                else if (vNegSet.contains(lastWord)) {
+                    vNegWords ++; }
+                else if (negationsSet.contains(lastWord)) {
+                    negations ++; }
+                else if (lastWord.startsWith("http")) {
+                    linkNum ++; }
             }
-            if(flag==1){
-                lastWord="";
-            }
-            else{
-                lastWord=currentWord;
-            }
+            if (flag) {
+                lastWord = ""; }
+            else {
+                lastWord = currentWord; }
         }
-        if(flag==0){
+        if (!flag) {
             if (posSet.contains(lastWord)) {
-                posWords++; }
+                posWords ++; }
             if (vPosSet.contains(lastWord)) {
-                vPosWords++; }
-            if(negSet.contains(lastWord)) {
-                negWords++; }
-            else if(vNegSet.contains(lastWord)) {
-                vNegWords++; }
-            if(negationsSet.contains(lastWord)) {
-                negations++; }
-            if(lastWord.startsWith("http")) {
-                linkNum++; }
+                vPosWords ++; }
+            if (negSet.contains(lastWord)) {
+                negWords ++; }
+            if (vNegSet.contains(lastWord)) {
+                vNegWords ++; }
+            if (negationsSet.contains(lastWord)) {
+                negations ++; }
+            if (lastWord.startsWith("http")) {
+                linkNum ++; }
         }
-        posRatio = (double)posWords/words;
-        negRatio = (double)negWords/words;
-        vPosRatio = (double)vPosWords/words;
-        vNegRatio = (double)vNegWords/words;
+        posRatio = (double) posWords/words;
+        negRatio = (double) negWords/words;
+        vPosRatio = (double) vPosWords/words;
+        vNegRatio = (double) vNegWords/words;
     }
     
     private String clearWord(String word){
         String clearWord;
-        if(word.charAt(0)=='\''){
-            clearWord=word.substring(1);
+        if (word.charAt(0) == '\'') {
+            clearWord = word.substring(1);
         }
-        else if(word.charAt(word.length()-1)=='\''){
-            clearWord=word.substring(0,word.length()-1);
+        else if (word.charAt(word.length() - 1) == '\'') {
+            clearWord = word.substring(0, word.length() - 1);
         }
-        else{
-            clearWord=word;
+        else {
+            clearWord = word;
         }
         return clearWord;
     }
