@@ -16,8 +16,8 @@ public class TwitterCrawlerMain {
     // to get own consumer key, follow tutorial found HERE:
     // http://consultingblogs.emc.com/nileeshabojjawar/archive/2010/03/18/twitter4j-oauth-generating-the-access-token.aspx
     
-    private final static String CONSUMER_KEY = "5fPDqW5R9GXo9bWH3C5w";
-    private final static String CONSUMER_KEY_SECRET = "yXljitRmLP3L6TIhOOVw73x48CzGqXvxDuLWXiZEOs4";
+    private final static String CONSUMER_KEY = "xxxxxxxxxxxxxxxxx";
+    private final static String CONSUMER_KEY_SECRET = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
  
     public void start() throws TwitterException, IOException {
         Twitter twitter = new TwitterFactory().getInstance();
@@ -55,8 +55,8 @@ public class TwitterCrawlerMain {
         
         
     /* Get authentication (1st step!!!) */
-        //TwitterApp t = new TwitterCrawlerMain();
-        //t.start();
+        TwitterCrawlerMain t = new TwitterCrawlerMain();
+        t.start();
     
     
     /* To crawl the not annotated tweets */
@@ -80,7 +80,7 @@ public class TwitterCrawlerMain {
         
         
     /* To get info from the not annotated tweets */
-        AnnotatedInfo c = new AnnotatedInfo();
-        c.run();
+        //AnnotatedInfo c = new AnnotatedInfo();
+        //c.run();
     }
 }
