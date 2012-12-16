@@ -217,6 +217,7 @@ public class NotAnnotatedInfo {
     
     private String getTwitterInfo(int i, String tweetId, Twitter twitter) {
         String result = null;
+        
         //followers, friends, timestamp, retweets, favorited
         try {
             status = twitter.showStatus(Long.parseLong(tweetId));
@@ -255,7 +256,7 @@ public class NotAnnotatedInfo {
         StringTokenizer parser = new StringTokenizer(tweet, " \t\n\r\f.,;:!?\"#"); 
         while (parser.hasMoreTokens()) {
             String currentWord = clearWord(parser.nextToken());
-            //System.out.println(currentWord);
+            
             words ++;
             flag = false;
             if (lastWord.compareTo("") != 0) {
