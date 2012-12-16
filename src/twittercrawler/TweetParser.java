@@ -3,7 +3,7 @@
 * then we show in the stdout the most used words
 * that way we can have a general view of words that MAYBE can help
 * in the sentiment analysis of large numbers of tweets.
- */
+*/
 package twittercrawler;
 
 import java.io.BufferedReader;
