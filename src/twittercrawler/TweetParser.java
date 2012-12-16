@@ -1,8 +1,8 @@
 /* * * * * * * * * *
- * Edw kanoume parsing to tweet kai pairnoume tis pio syxnes lekseis
- * vazoume oles tis lekseis se ena hash map kai ektypwnoume sto stdout tis pio syxnes
- * dystyxws den voh8aei idiaitera giati oi lekseis pou emfanizontai sterountai synais8hmatos
- * omws to afhnoume afou ylopoih8hke etsi ki alliws.
+* We parse every word from the tweets and move it in a hash map
+* then we show in the stdout the most used words
+* that way we can have a general view of words that MAYBE can help
+* in the sentiment analysis of large numbers of tweets.
  */
 package twittercrawler;
 
@@ -29,7 +29,7 @@ public class TweetParser {
         frequencyMap = new HashMap();
         String strLine;
         
-        // Kanoume ton elegxo prwta gia ta not annotated
+        // We use the not annotated tweets first
         while ((strLine = br.readLine()) != null) {
             int index = strLine.indexOf("\t");
             String str2 = strLine.substring(index + "\t".length());
@@ -43,7 +43,7 @@ public class TweetParser {
         in = new DataInputStream(fInstream);
         br = new BufferedReader(new InputStreamReader(in));
         
-        // Kai meta gia ta annotated
+        // the annotated afterwards
         while ((strLine = br.readLine()) != null) {
             int index = strLine.lastIndexOf("\t");
             String str2 = strLine.substring(0, index);
