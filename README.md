@@ -70,8 +70,6 @@ The following is the template to be used with the text files, to create a valid 
 @ATTRIBUTE class {1,0,-1}<br><br>
 
 @DATA<br>
-206869046149390338,127964415,623,1380,"Mon May 28 01:06:38 EEST 2012",55,0,0,2,0,0,0,0,0,0.10526315789473684,0.0,0.0,0.0,0,3,0,0,0,24,61,0,0,0,0,0<br>
-205886655515725824,155805879,550,295,"Fri May 25 08:02:58 EEST 2012",1,0,0,1,0,0,0,0,0,0.125,0.0,0.0,0.0,0,0,0,0,0,3,39,0,0,0,0,0<br>
-etc........
+/* the text files included */
 
 
